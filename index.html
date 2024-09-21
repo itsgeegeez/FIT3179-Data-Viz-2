@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+        <script src="index.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <title>Tay Tshung Wen FIT3179 Data Viz 2 - Malaysia General Election 2022</title>
+    </head>
+    <body class="bg-gradient-to-r from-cyan-800 to-blue-800 w-svw h-dvh">
+        <div
+            style="
+                height: inherit;
+                grid-template-areas: 'map map chart1' 'map map chart2' 'chart3 chart4 chart5';
+                grid-template-columns: 1fr 1fr calc(36 * 16px);
+                grid-template-rows: 1fr 1fr calc(24 * 16px);
+            "
+            class="grid m-auto p-16 w-[1920px] gap-4 grid-rows-3"
+        >
+            <div class="h-full" style="grid-area: map" id="map"></div>
+            <div class="h-full" style="grid-area: chart1" id="chart1"></div>
+            <div class="h-full" style="grid-area: chart2" id="chart2"></div>
+            <div class="h-full" style="grid-area: chart3" id="chart3"></div>
+            <div class="h-full" style="grid-area: chart4" id="chart4"></div>
+            <div class="h-full" style="grid-area: chart5" id="chart5"></div>
+        </div>
+    </body>
+</html>

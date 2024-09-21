@@ -1,0 +1,122 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "background": "transparent",
+    "height": "container",
+    "autosize": "fit",
+    "title": {
+        "text": "Top seats won by coalition"
+    },
+    "data": {
+        "url": "https://raw.githubusercontent.com/itsgeegeez/FIT3179-Data-Viz-2/main/data/candidates_ge15.csv"
+    },
+    "transform": [
+        { "filter": "datum.result_desc == 'won'" },
+        {
+            "lookup": "party",
+            "from": {
+                "data": {
+                    "values": [
+                        {
+                            "party": "PAKATAN HARAPAN (PH)",
+                            "coalition": "PAKATAN HARAPAN (PH)"
+                        },
+                        {
+                            "party": "PARTI TINDAKAN DEMOKRATIK (DAP)",
+                            "coalition": "PAKATAN HARAPAN (PH)"
+                        },
+                        {
+                            "party": "BARISAN NASIONAL (BN)",
+                            "coalition": "BARISAN NASIONAL (BN)"
+                        },
+                        {
+                            "party": "PARTI BERSATU RAKYAT SABAH (PBRS)",
+                            "coalition": "BARISAN NASIONAL (BN)"
+                        },
+                        {
+                            "party": "PARTI ISLAM SE MALAYSIA (PAS)",
+                            "coalition": "PARTI ISLAM SE MALAYSIA (PAS)"
+                        },
+                        {
+                            "party": "PERIKATAN NASIONAL (PN)",
+                            "coalition": "PERIKATAN NASIONAL (PN)"
+                        }
+                    ]
+                },
+                "key": "party",
+                "fields": ["coalition"]
+            },
+            "default": "OTHERS"
+        },
+        {
+            "aggregate": [
+                {
+                    "op": "count",
+                    "as": "seats_won"
+                }
+            ],
+            "groupby": ["coalition"]
+        },
+        {
+            "lookup": "coalition",
+            "from": {
+                "data": {
+                    "url": "https://raw.githubusercontent.com/itsgeegeez/FIT3179-Data-Viz-2/main/data/candidates_ge15.csv"
+                },
+                "key": "coalition",
+                "fields": ["party"]
+            },
+            "as": "parties"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "color": "white"
+    },
+    "encoding": {
+        "y": {
+            "field": "coalition",
+            "type": "nominal",
+            "sort": "-x",
+            "title": "Coalition"
+        },
+        "x": {
+            "field": "seats_won",
+            "type": "quantitative",
+            "title": "Number of Seats Won"
+        },
+        "color": {
+            "field": "coalition",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "PAKATAN HARAPAN (PH)",
+                    "BARISAN NASIONAL (BN)",
+                    "PERIKATAN NASIONAL (PN)",
+                    "PARTI ISLAM SE MALAYSIA (PAS)",
+                    "OTHERS"
+                ],
+                "range": ["#f44422", "#0069BB", "#9944B8", "green", "#645665"]
+            },
+            "legend": null
+        },
+        "tooltip": [
+            { "field": "coalition", "type": "nominal", "title": "Coalition" },
+            { "field": "seats_won", "type": "quantitative", "title": "Seats Won" }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelColor": "white",
+            "titleColor": "white",
+            "grid": false
+        },
+        "view": {
+            "stroke": "transparent"
+        },
+        "title": {
+            "color": "white",
+            "fontSize": 16
+        }
+    }
+}
