@@ -10,22 +10,33 @@
     "title": {
         "text": "Malaysia General Election 2022",
         "subtitle": "Winning Candidates by Political Party",
-        "color": "white",
-        "subtitleColor": "white",
+        "color": "black",
+        "subtitleColor": "black",
         "fontSize": 20
     },
+
     "projection": { "type": "equirectangular" },
     "layer": [
         {
+            "params": [
+                {
+                    "name": "party_selection",
+                    "select": {
+                        "type": "point",
+                        "fields": ["party_category"]
+                    },
+                    "bind": "legend"
+                }
+            ],
             "data": {
-                "url": "https://raw.githubusercontent.com/itsgeegeez/FIT3179-Data-Viz-2/main/data/candidates_ge15.csv"
+                "url": "https://raw.githubusercontent.com/itsgeegeez/fit3179-week10/main/candidates_ge15.csv"
             },
             "transform": [
                 {
                     "lookup": "parlimen",
                     "from": {
                         "data": {
-                            "url": "https://raw.githubusercontent.com/itsgeegeez/FIT3179-Data-Viz-2/main/data/malaysia.parlimen.topojson",
+                            "url": "https://raw.githubusercontent.com/itsgeegeez/fit3179-week10/main/malaysia.parlimen.topojson",
                             "format": { "feature": "malaysia.parlimen" }
                         },
                         "key": "properties.parlimen",
@@ -36,7 +47,7 @@
                     "lookup": "parlimen",
                     "from": {
                         "data": {
-                            "url": "https://raw.githubusercontent.com/itsgeegeez/FIT3179-Data-Viz-2/main/data/census_parlimen.csv"
+                            "url": "https://raw.githubusercontent.com/itsgeegeez/fit3179-week10/main/census_parlimen.csv"
                         },
                         "key": "parlimen",
                         "fields": ["state"]
@@ -44,11 +55,11 @@
                 },
                 { "filter": "datum.result_desc == 'won'" },
                 {
-                    "calculate": "indexof(['PERIKATAN NASIONAL (PN)', 'BARISAN NASIONAL (BN)', 'PAKATAN HARAPAN (PH)', 'PARTI GABUNGAN RAKYAT SABAH (GRS)', 'GABUNGAN PARTI SARAWAK (GPS)', 'PARTI TINDAKAN DEMOKRATIK (DAP)', 'PARTI BERSATU RAKYAT SABAH (PBRS)', 'PARTI ISLAM SE MALAYSIA (PAS)'], datum.party) > -1 ? datum.party : 'Others'",
+                    "calculate": "indexof(['PERIKATAN NASIONAL (PN)', 'BARISAN NASIONAL (BN)', 'PAKATAN HARAPAN (PH)', 'PARTI GABUNGAN RAKYAT SABAH (GRS)', 'GABUNGAN PARTI SARAWAK (GPS)', 'PARTI TINDAKAN DEMOKRATIK (DAP)', 'PARTI BERSATU RAKYAT SABAH (PBRS)', 'PARTI ISLAM SE MALAYSIA (PAS)'], datum.party) > -1 ? datum.party : 'OTHERS'",
                     "as": "party_category"
                 }
             ],
-            "mark": { "type": "geoshape", "stroke": "white", "strokeWidth": 0.5 },
+            "mark": { "type": "geoshape", "stroke": "white", "strokeWidth": 0.25 },
             "encoding": {
                 "color": {
                     "field": "party_category",
@@ -64,7 +75,7 @@
                             "IKATAN DEMOKRATIK MALAYSIA (MUDA)",
                             "PARTI BERSATU RAKYAT SABAH (PBRS)",
                             "PARTI ISLAM SE MALAYSIA (PAS)",
-                            "Others"
+                            "OTHERS"
                         ],
                         "range": [
                             "#f44422",
@@ -79,20 +90,24 @@
                             "#645665"
                         ]
                     },
-                    "legend": { "title": "Political Party", "labelColor": "white", "titleColor": "white" }
+                    "legend": { "title": "Political Party", "labelColor": "black", "titleColor": "black" }
                 },
                 "tooltip": [
                     { "field": "parlimen", "type": "nominal", "title": "Parliment" },
                     { "field": "state", "type": "nominal", "title": "State" },
                     { "field": "name_display", "type": "nominal", "title": "Winner" },
-                    { "field": "party", "type": "nominal", "title": "Party" },
-                    { "field": "votes", "type": "quantitative", "title": "Votes" }
-                ]
+                    { "field": "party", "type": "nominal", "title": "Political Party" },
+                    { "field": "votes", "type": "quantitative", "title": "Votes", "format": ",.0f" }
+                ],
+                "opacity": {
+                    "condition": { "param": "party_selection", "value": 1 },
+                    "value": 0.2
+                }
             }
         },
         {
             "data": {
-                "url": "https://raw.githubusercontent.com/itsgeegeez/fit3179-week9/main/malaysia.parlimen.topojson",
+                "url": "https://raw.githubusercontent.com/itsgeegeez/fit3179-week10/main/malaysia.parlimen.topojson",
                 "format": { "feature": "ne_10m_graticules_1" }
             },
             "mark": { "type": "geoshape", "stroke": "lightgray", "strokeWidth": 0.5, "fill": null }
