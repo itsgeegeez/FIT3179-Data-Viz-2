@@ -17,3 +17,6 @@ census_parlimen <- read.csv(census_parlimen_path)
 voters <- read.csv(voters_path)
 
 unique_dun <- unique(voters$dun)
+dun_array <- c("All", unique_dun)
+json_array <- toJSON(dun_array, auto_unbox = TRUE)
+cat(json_array)
