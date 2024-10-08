@@ -37,13 +37,16 @@
         <div
             style="
                 height: inherit;
-                grid-template-areas: 'map map map' 'chart1 chart2 chart3';
+                grid-template-areas: 'title title title' 'map map map' 'chart1 chart2 chart3';
                 grid-template-columns: 1fr 1fr 1fr;
-                grid-template-rows: 1fr calc(24 * 16px);
+                grid-template-rows: min-content 1fr calc(24 * 16px);
             "
             class="grid m-auto p-16 w-[1920px] gap-4 grid-rows-3"
         >
-            <div class="h-full" style="grid-area: map" id="map"></div>
+            <div class="h-full" style="grid-area: title">
+                <p class="text-[18pt] font-bold text-center">Malaysia General Election 2022</p>
+            </div>
+            <div style="grid-area: map" class="h-full" id="map"></div>
             <div class="h-full" style="grid-area: chart1" id="majority_by_state"></div>
             <div class="h-full" style="grid-area: chart2" id="age"></div>
             <div class="h-full" style="grid-area: chart3" id="type"></div>

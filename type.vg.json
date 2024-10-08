@@ -1263,16 +1263,16 @@
     ],
 
     "title": {
-        "text": "Constituency Voters by Type",
-        "font": "Arial",
-        "subtitle": "Highlight a voter type to see the distribution of voters by voter type"
+        "text": "Composition of Voter Types",
+        "fontSize": 16,
+        "align": "center"
     },
 
     "layer": [
         {
             "mark": {
-                "type": "bar",
-                "width": 48
+                "type": "arc",
+                 "radius": 128
             },
             "params": [
                 {
@@ -1285,13 +1285,12 @@
                 }
             ],
             "encoding": {
-                "x": {
+                "angle": {
                     "field": "votertype",
                     "type": "ordinal",
-                    "title": "Voter Type",
-                    "axis": { "labelAngle": -45 }
+                    "title": "Voter Type"
                 },
-                "y": {
+                "theta": {
                     "field": "value",
                     "type": "quantitative",
                     "title": "Number of Voters"
@@ -1299,7 +1298,11 @@
                 "color": {
                     "field": "votertype",
                     "title": "Voter Type",
-                    "type": "nominal"
+                    "type": "nominal",
+                    "legend": {
+                        "labelFontSize": 10,
+                        "titleFontSize": 12
+                    }
                 },
                 "opacity": {
                     "condition": { "param": "type_selection", "value": 1 },

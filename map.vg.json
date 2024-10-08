@@ -8,11 +8,8 @@
         "stroke": "transparent"
     },
     "title": {
-        "text": "Malaysia General Election 2022",
-        "subtitle": "Winning Candidates by Political Party",
-        "color": "black",
-        "subtitleColor": "black",
-        "fontSize": 20
+        "text": "Electoral Map: Distribution of Political Parties Across Malaysian States",
+        "fontSize": 16
     },
 
     "projection": { "type": "equirectangular" },
@@ -90,7 +87,13 @@
                             "#645665"
                         ]
                     },
-                    "legend": { "title": "Political Party", "labelColor": "black", "titleColor": "black" }
+                    "legend": {
+                        "title": "Political Party",
+                        "labelColor": "black",
+                        "titleColor": "black",
+                        "labelFontSize": 10,
+                        "titleFontSize": 12
+                    }
                 },
                 "tooltip": [
                     { "field": "parlimen", "type": "nominal", "title": "Parliment" },

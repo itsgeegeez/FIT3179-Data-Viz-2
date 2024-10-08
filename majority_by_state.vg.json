@@ -27,19 +27,31 @@
     "height": "container",
     "autosize": "fit",
     "title": {
-        "text": "Average Majority Votes by State"
+        "text": "Average Majority Votes by State",
+        "fontSize": 16
     },
     "layer": [
         {
-            "mark": "rect",
+            "mark": "bar",
             "encoding": {
-                "y": { "field": "state", "type": "nominal", "sort": "-x", "title": "State" },
-                "x": { "field": "average_majoriti", "type": "quantitative", "title": "Average Majority Votes" },
-                "color": {
+                "y": {
+                    "field": "state",
+                    "type": "nominal",
+                    "sort": "-x",
+                    "title": "State",
+                    "axis": {
+                        "labelFontSize": 10,
+                        "titleFontSize": 12
+                    }
+                },
+                "x": {
                     "field": "average_majoriti",
                     "type": "quantitative",
-                    "scale": { "scheme": "viridis" },
-                    "legend": { "title": "Votes" }
+                    "title": "Average Majority Votes",
+                    "axis": {
+                        "labelFontSize": 10,
+                        "titleFontSize": 12
+                    }
                 },
                 "tooltip": [
                     { "field": "state", "type": "nominal", "title": "State" },

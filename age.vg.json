@@ -1,10 +1,11 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": { "url": "https://raw.githubusercontent.com/itsgeegeez/fit3179-week10/main/voters_ge15.csv" },
-    "width": "container",
     "background": "transparent",
-    "height": "container",
-    "autosize": "fit",
+    "autosize": {
+        "type": "fit",
+        "contains": "padding"
+    },
     "params": [
         {
             "name": "dun_selection",
@@ -1279,51 +1280,114 @@
             "as": "age_group"
         }
     ],
-
     "title": {
-        "text": "Constituency Voters by Age Group and Gender",
-        "font": "Arial",
-        "subtitle": "Highlight a gender to see the distribution of voters by age group"
+        "text": "Voter Demographics: Age and Gender Distribution in Malaysia",
+        "fontSize": 16,
+        "dx": 80
     },
-
-    "layer": [
+    "hconcat": [
         {
-            "mark": {
-                "type": "bar",
-                "width": 48
-            },
-            "params": [
+            "transform": [
                 {
-                    "name": "gender_selection",
-                    "select": {
-                        "type": "point",
-                        "fields": ["gender"]
-                    },
-                    "bind": "legend"
+                    "filter": {
+                        "field": "gender",
+                        "equal": "Male"
+                    }
                 }
             ],
+            "mark": {
+                "type": "bar"
+            },
+            "width": 256,
+            "height": 288,
+            "title": "Male",
             "encoding": {
-                "x": {
+                "y": {
                     "field": "age_group",
                     "type": "ordinal",
                     "title": "Age Group",
-                    "axis": { "labelAngle": -45 }
+                    "sort": "descending",
+                    "axis": null
                 },
-                "y": {
+
+                "x": {
                     "field": "value",
                     "type": "quantitative",
                     "title": "Number of Voters",
-                    "stack": "normalize"
+                    "sort": "descending",
+                    "axis": {
+                        "labelFontSize": 10,
+                        "titleFontSize": 12
+                    }
                 },
                 "color": {
                     "field": "gender",
                     "title": "Gender",
                     "type": "nominal",
+                    "legend": null,
                     "scale": { "domain": ["Male", "Female"], "range": ["steelblue", "pink"] }
                 },
-                "opacity": {
-                    "condition": { "param": "gender_selection", "value": 1 },
-                    "value": 0.2
+                "tooltip": [
+                    { "field": "dun", "type": "nominal", "title": "Constituency" },
+                    { "field": "age_group", "type": "ordinal", "title": "Age Group" },
+                    { "field": "gender", "type": "nominal", "title": "Gender" },
+                    { "field": "value", "type": "quantitative", "title": "Number of Voters", "format": ",.0f" }
+                ]
+            }
+        },
+        {
+            "height": 288,
+            "view": {
+                "stroke": null
+            },
+            "mark": {
+                "type": "text",
+                "align": "center",
+                "fontSize": 12
+            },
+            "encoding": {
+                "y": { "field": "age_group", "type": "ordinal", "axis": null, "sort": "descending" },
+                "text": { "field": "age_group", "type": "ordinal" }
+            }
+        },
+        {
+            "transform": [
+                {
+                    "filter": {
+                        "field": "gender",
+                        "equal": "Female"
+                    }
+                }
+            ],
+            "height": 288,
+            "width": 256,
+            "mark": {
+                "type": "bar"
+            },
+            "title": "Female",
+            "encoding": {
+                "y": {
+                    "field": "age_group",
+                    "type": "ordinal",
+                    "title": "Age Group",
+                    "sort": "descending",
+                    "axis": null
+                },
+                "x": {
+                    "field": "value",
+                    "type": "quantitative",
+                    "title": "Number of Voters",
+                    "axis": {
+                        "labelFontSize": 10,
+                        "titleFontSize": 12
+                    }
+                },
+                "color": {
+                    "field": "gender",
+                    "title": "Gender",
+                    "type": "nominal",
+                    "legend": null,
+                    "scale": { "domain": ["Male", "Female"], "range": ["steelblue", "pink"] }
                 },
                 "tooltip": [
                     { "field": "dun", "type": "nominal", "title": "Constituency" },
