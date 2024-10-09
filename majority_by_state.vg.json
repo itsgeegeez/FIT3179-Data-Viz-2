@@ -26,10 +26,6 @@
     "background": "transparent",
     "height": "container",
     "autosize": "fit",
-    "title": {
-        "text": "Average Majority Votes by State",
-        "fontSize": 14
-    },
     "layer": [
         {
             "mark": "bar",
@@ -41,7 +37,7 @@
                     "title": "State",
                     "axis": {
                         "labelFontSize": 10,
-                        "titleFontSize": 12
+                        "titleFontSize": 11
                     }
                 },
                 "x": {
@@ -50,7 +46,7 @@
                     "title": "Average Majority Votes",
                     "axis": {
                         "labelFontSize": 10,
-                        "titleFontSize": 12
+                        "titleFontSize": 11
                     }
                 },
                 "tooltip": [

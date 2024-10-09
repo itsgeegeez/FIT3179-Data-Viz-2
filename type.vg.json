@@ -1242,7 +1242,7 @@
                     "N.81 Ba'Kelalan",
                     "N.82 Bukit Sari"
                 ],
-                "name": "Constituency"
+                "name": " "
             }
         }
     ],
@@ -1263,17 +1263,11 @@
         }
     ],
 
-    "title": {
-        "text": "Voter Type Distribution",
-        "fontSize": 14,
-        "align": "center"
-    },
-
     "layer": [
         {
             "mark": {
                 "type": "arc",
-                "radius": 128
+                "radius": 96
             },
             "params": [
                 {
@@ -1302,7 +1296,7 @@
                     "type": "nominal",
                     "legend": {
                         "labelFontSize": 10,
-                        "titleFontSize": 12
+                        "orient": "bottom"
                     }
                 },
                 "opacity": {
@@ -1319,6 +1313,10 @@
     ],
     "config": {
         "view": { "stroke": null },
-        "axis": { "grid": false }
+        "axis": { "grid": false },
+        "legend": {
+            "titleFontSize": 11,
+            "labelFontSize": 10
+        }
     }
 }

@@ -35,25 +35,69 @@
                 .catch(console.error);
         </script>
         <div
-            style="
-                grid-template-areas: 'title title title' 'map map map' 'chart1 chart2 chart3';
-                grid-template-columns: 384px 1fr 384px;
-                grid-template-rows: min-content min-content 384px;
-            "
-            class="grid m-auto p-4 w-[1280px] gap-4 grid-rows-3"
+            class="mx-auto my-8 bg-blue p-8 shadow-lg border border-solid border-black/24 w-[1280px] flex flex-col gap-8"
         >
-            <div class="h-full" style="grid-area: title">
-                <p class="text-[18pt] font-bold text-center">Malaysia General Election 2022</p>
+            <div class="flex flex-col align-center justify-center">
+                <p class="text-[18pt] font-serif font-black text-center">Malaysia General Election 2022</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue tellus, condimentum ac libero
+                    nec, pretium accumsan sem. Cras pretium elit nec mollis auctor. Sed urna justo, tempor sit amet nisi
+                    a, pharetra tincidunt arcu. Praesent pulvinar, ante id gravida facilisis, ligula lorem auctor
+                    libero, sit amet iaculis ipsum nibh a nibh. Donec sit amet velit congue, tempor lorem a, pulvinar
+                    nunc. Phasellus eleifend porttitor libero, quis finibus sem consequat ut.
+                </p>
             </div>
-            <div style="grid-area: map" class="h-full" id="map"></div>
-            <div class="h-full" style="grid-area: chart1" id="majority_by_state"></div>
-            <div class="h-full flex flex-col" style="grid-area: chart2">
-                <div id="age" class="flex-grow"></div>
-                <div id="age-select"></div>
+            <div class="flex w-full gap-4 h-[384px]" id="map"></div>
+            <div class="h-[256px] gap-4 flex flex-row">
+                <div class="h-full flex-grow" id="majority_by_state"></div>
+                <div class="w-[384px] flex flex-col gap-2">
+                    <p class="font-black text-[18pt] font-serif">Top 10 states with highest average majority votes</p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue tellus, condimentum ac
+                        libero nec, pretium accumsan sem. Cras pretium elit nec mollis auctor. Sed urna justo, tempor
+                        sit amet nisi a, pharetra tincidunt arcu. Praesent pulvinar, ante id gravida facilisis, ligula
+                        lorem auctor libero, sit amet iaculis ipsum nibh a nibh.
+                    </p>
+                </div>
             </div>
-            <div class="h-full flex flex-col" style="grid-area: chart3">
-                <div id="type" class="flex-grow"></div>
-                <div id="type-select"></div>
+            <div class="h-[256px] gap-4 flex flex-row w-full">
+                <div class="flex w-[736px] flex-col gap-2">
+                    <div class="font-black text-[18pt] font-serif whitespace-nowrap">
+                        <p class="inline-block w-fit">Voter age and gender distribution at</p>
+                        <span class="inline-block h-min w-fit" id="age-select"></span>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue tellus, condimentum ac
+                        libero nec, pretium accumsan sem. Cras pretium elit nec mollis auctor. Sed urna justo, tempor
+                        sit amet nisi a, pharetra tincidunt arcu. Praesent pulvinar, ante id gravida facilisis, ligula
+                        lorem auctor libero, sit amet iaculis ipsum nibh a nibh. Donec sit amet velit congue, tempor
+                        lorem a, pulvinar nunc. Phasellus eleifend porttitor libero, quis finibus sem consequat ut. Duis
+                        quis accumsan neque. Nam non magna mi. Vivamus ullamcorper feugiat ipsum, eget tempus quam.
+                        Pellentesque dapibus turpis mi, vel lacinia ipsum hendrerit et. Donec interdum ligula non lorem
+                        tincidunt, at blandit mi gravida.
+                    </p>
+                </div>
+                <div class="h-full flex-grow" id="age"></div>
+            </div>
+            <div class="h-[256px] gap-4 flex flex-row">
+                <div class="h-full w-full" id="type"></div>
+                <div class="flex-grow flex flex-col gap-2">
+                    <div class="font-black text-[18pt] font-serif">
+                        <p class="inline-block w-fit">Voter age and gender distribution at</p>
+                        <span class="inline-block h-min w-fit" id="type-select"></span>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue tellus, condimentum ac
+                        libero nec, pretium accumsan sem. Cras pretium elit nec mollis auctor. Sed urna justo, tempor
+                        sit amet nisi a, pharetra tincidunt arcu. Praesent pulvinar, ante id gravida facilisis, ligula
+                        lorem auctor libero, sit amet iaculis ipsum nibh a nibh. Donec sit amet velit congue, tempor
+                        lorem a, pulvinar nunc. Phasellus eleifend porttitor libero, quis finibus sem consequat ut. Duis
+                        quis accumsan neque. Nam non magna mi. Vivamus ullamcorper feugiat ipsum, eget tempus quam.
+                        Pellentesque dapibus turpis mi, vel lacinia ipsum hendrerit et. Donec interdum ligula non lorem
+                        tincidunt, at blandit mi gravida. Donec ut risus ipsum. Donec id risus quis nulla bibendum
+                        pulvinar.
+                    </p>
+                </div>
             </div>
         </div>
     </body>

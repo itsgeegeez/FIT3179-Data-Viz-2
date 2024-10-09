@@ -1239,7 +1239,7 @@
                     "N.81 Ba'Kelalan",
                     "N.82 Bukit Sari"
                 ],
-                "name": "Constituency"
+                "name": " "
             }
         }
     ],
@@ -1278,11 +1278,6 @@
             "as": "age_group"
         }
     ],
-    "title": {
-        "fontSize": 14,
-        "dx": 112,
-        "text": "Voter Age and Gender Distribution"
-    },
     "hconcat": [
         {
             "transform": [
@@ -1297,7 +1292,7 @@
                 "type": "bar"
             },
             "title": "Male",
-            "height": 280,
+            "height": 192,
             "encoding": {
                 "y": {
                     "field": "age_group",
@@ -1311,11 +1306,7 @@
                     "field": "value",
                     "type": "quantitative",
                     "title": "Number of Voters",
-                    "sort": "descending",
-                    "axis": {
-                        "labelFontSize": 10,
-                        "titleFontSize": 12
-                    }
+                    "sort": "descending"
                 },
                 "color": {
                     "field": "gender",
@@ -1336,12 +1327,12 @@
             "view": {
                 "stroke": null
             },
-            "height": 280,
+            "height": 192,
             "width": 48,
             "mark": {
                 "type": "text",
                 "align": "center",
-                "fontSize": 12
+                "fontSize": 11
             },
             "encoding": {
                 "y": { "field": "age_group", "type": "ordinal", "axis": null, "sort": "descending" },
@@ -1360,7 +1351,7 @@
             "mark": {
                 "type": "bar"
             },
-            "height": 280,
+            "height": 192,
             "title": "Female",
             "encoding": {
                 "y": {
@@ -1373,11 +1364,7 @@
                 "x": {
                     "field": "value",
                     "type": "quantitative",
-                    "title": "Number of Voters",
-                    "axis": {
-                        "labelFontSize": 10,
-                        "titleFontSize": 12
-                    }
+                    "title": "Number of Voters"
                 },
                 "color": {
                     "field": "gender",
@@ -1397,6 +1384,9 @@
     ],
     "config": {
         "view": { "stroke": null },
-        "axis": { "grid": false }
+        "axis": { "grid": false, "labelFontSize": 10, "labelSeparation": 1 },
+        "title": {
+            "fontSize": 11
+        }
     }
 }
