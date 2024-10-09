@@ -4,13 +4,14 @@
     "width": "container",
     "background": "transparent",
     "height": "container",
-    "autosize": "fit",
     "params": [
         {
             "name": "dun_selection",
             "value": "N.31 Subang Jaya",
             "bind": {
                 "input": "select",
+                "debounce": 500,
+                "element": "#type-select",
                 "options": [
                     "N.01 Titi Tinggi",
                     "N.02 Beseri",
@@ -1263,8 +1264,8 @@
     ],
 
     "title": {
-        "text": "Composition of Voter Types",
-        "fontSize": 16,
+        "text": "Voter Type Distribution",
+        "fontSize": 14,
         "align": "center"
     },
 
@@ -1272,7 +1273,7 @@
         {
             "mark": {
                 "type": "arc",
-                 "radius": 128
+                "radius": 128
             },
             "params": [
                 {

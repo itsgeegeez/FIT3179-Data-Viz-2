@@ -13,7 +13,7 @@
 
         <title>Tay Tshung Wen FIT3179 Data Viz 2 - Malaysia General Election 2022</title>
     </head>
-    <body class="w-svw h-svh">
+    <body>
         <script type="text/javascript">
             var vg_1 = './map.vg.json';
             vegaEmbed('#map', vg_1, { actions: false })
@@ -36,20 +36,25 @@
         </script>
         <div
             style="
-                height: inherit;
                 grid-template-areas: 'title title title' 'map map map' 'chart1 chart2 chart3';
-                grid-template-columns: 1fr 1fr 1fr;
-                grid-template-rows: min-content 1fr calc(24 * 16px);
+                grid-template-columns: 384px 1fr 384px;
+                grid-template-rows: min-content min-content 384px;
             "
-            class="grid m-auto p-16 w-[1920px] gap-4 grid-rows-3"
+            class="grid m-auto p-4 w-[1280px] gap-4 grid-rows-3"
         >
             <div class="h-full" style="grid-area: title">
                 <p class="text-[18pt] font-bold text-center">Malaysia General Election 2022</p>
             </div>
             <div style="grid-area: map" class="h-full" id="map"></div>
             <div class="h-full" style="grid-area: chart1" id="majority_by_state"></div>
-            <div class="h-full" style="grid-area: chart2" id="age"></div>
-            <div class="h-full" style="grid-area: chart3" id="type"></div>
+            <div class="h-full flex flex-col" style="grid-area: chart2">
+                <div id="age" class="flex-grow"></div>
+                <div id="age-select"></div>
+            </div>
+            <div class="h-full flex flex-col" style="grid-area: chart3">
+                <div id="type" class="flex-grow"></div>
+                <div id="type-select"></div>
+            </div>
         </div>
     </body>
 </html>

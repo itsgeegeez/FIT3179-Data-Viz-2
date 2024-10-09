@@ -28,7 +28,7 @@
     "autosize": "fit",
     "title": {
         "text": "Average Majority Votes by State",
-        "fontSize": 16
+        "fontSize": 14
     },
     "layer": [
         {

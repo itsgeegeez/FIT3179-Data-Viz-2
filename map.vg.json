@@ -2,16 +2,15 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": "container",
     "background": "transparent",
-    "height": "container",
+    "height": 512,
     "autosize": "fit",
     "view": {
         "stroke": "transparent"
     },
     "title": {
         "text": "Electoral Map: Distribution of Political Parties Across Malaysian States",
-        "fontSize": 16
+        "fontSize": 14
     },
-
     "projection": { "type": "equirectangular" },
     "layer": [
         {

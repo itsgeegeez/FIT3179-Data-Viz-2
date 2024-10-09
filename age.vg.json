@@ -2,16 +2,13 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": { "url": "https://raw.githubusercontent.com/itsgeegeez/fit3179-week10/main/voters_ge15.csv" },
     "background": "transparent",
-    "autosize": {
-        "type": "fit",
-        "contains": "padding"
-    },
     "params": [
         {
             "name": "dun_selection",
             "value": "N.31 Subang Jaya",
             "bind": {
                 "input": "select",
+                "element": "#age-select",
                 "options": [
                     "N.01 Titi Tinggi",
                     "N.02 Beseri",
@@ -1246,6 +1243,7 @@
             }
         }
     ],
+    "spacing": 0,
     "transform": [
         { "filter": "datum.dun == dun_selection" },
         {
@@ -1281,9 +1279,9 @@
         }
     ],
     "title": {
-        "text": "Voter Demographics: Age and Gender Distribution in Malaysia",
-        "fontSize": 16,
-        "dx": 80
+        "fontSize": 14,
+        "dx": 112,
+        "text": "Voter Age and Gender Distribution"
     },
     "hconcat": [
         {
@@ -1298,9 +1296,8 @@
             "mark": {
                 "type": "bar"
             },
-            "width": 256,
-            "height": 288,
             "title": "Male",
+            "height": 280,
             "encoding": {
                 "y": {
                     "field": "age_group",
@@ -1336,10 +1333,11 @@
             }
         },
         {
-            "height": 288,
             "view": {
                 "stroke": null
             },
+            "height": 280,
+            "width": 48,
             "mark": {
                 "type": "text",
                 "align": "center",
@@ -1359,11 +1357,10 @@
                     }
                 }
             ],
-            "height": 288,
-            "width": 256,
             "mark": {
                 "type": "bar"
             },
+            "height": 280,
             "title": "Female",
             "encoding": {
                 "y": {
