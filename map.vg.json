@@ -21,14 +21,14 @@
                 }
             ],
             "data": {
-                "url": "https://raw.githubusercontent.com/itsgeegeez/fit3179-week10/main/candidates_ge15.csv"
+                "url": "https://raw.githubusercontent.com/itsgeegeez/FIT3179-Data-Viz-2/refs/heads/main/data/candidates_ge15.csv"
             },
             "transform": [
                 {
                     "lookup": "parlimen",
                     "from": {
                         "data": {
-                            "url": "https://raw.githubusercontent.com/itsgeegeez/fit3179-week10/main/malaysia.parlimen.topojson",
+                            "url": "https://raw.githubusercontent.com/itsgeegeez/FIT3179-Data-Viz-2/refs/heads/main/data/malaysia.parlimen.topojson",
                             "format": { "feature": "malaysia.parlimen" }
                         },
                         "key": "properties.parlimen",
@@ -39,7 +39,7 @@
                     "lookup": "parlimen",
                     "from": {
                         "data": {
-                            "url": "https://raw.githubusercontent.com/itsgeegeez/fit3179-week10/main/census_parlimen.csv"
+                            "url": "https://raw.githubusercontent.com/itsgeegeez/FIT3179-Data-Viz-2/refs/heads/main/data/census_parlimen.csv"
                         },
                         "key": "parlimen",
                         "fields": ["state"]
@@ -86,8 +86,8 @@
                         "title": "Political Party",
                         "labelColor": "black",
                         "titleColor": "black",
-                        "labelFontSize": 10,
-                        "titleFontSize": 11
+                        "labelFontSize": 12,
+                        "titleFontSize": 14
                     }
                 },
                 "tooltip": [
@@ -105,7 +105,7 @@
         },
         {
             "data": {
-                "url": "https://raw.githubusercontent.com/itsgeegeez/fit3179-week10/main/malaysia.parlimen.topojson",
+                "url": "https://raw.githubusercontent.com/itsgeegeez/FIT3179-Data-Viz-2/refs/heads/main/data/malaysia.parlimen.topojson",
                 "format": { "feature": "ne_10m_graticules_1" }
             },
             "mark": { "type": "geoshape", "stroke": "lightgray", "strokeWidth": 0.5, "fill": null }

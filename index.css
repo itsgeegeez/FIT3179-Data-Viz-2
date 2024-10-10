@@ -1,0 +1,41 @@
+/* Create vars */
+:root {
+    --red: #cc0001;
+    --blue: #010066;
+    --white: #fff;
+    --orange: #ffcc00;
+}
+
+.highlight {
+    color: var(--red);
+}
+
+.highlight > option {
+    color: black;
+}
+
+.vega-bind > label,
+select {
+    display: block;
+    width: 256px;
+}
+
+.section-title {
+    font-family: serif;
+    font-size: 16pt;
+}
+
+.title {
+    font-size: 24pt;
+    font-family: serif;
+}
+
+
+.body {
+    font-family: serif;
+    font-size: 12pt;
+}
+
+.chart-title {
+    font-size: 12pt;
+}

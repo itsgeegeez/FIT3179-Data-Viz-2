@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": { "url": "https://raw.githubusercontent.com/itsgeegeez/fit3179-week10/main/results_parlimen_ge15.csv" },
+    "data": { "url": "https://raw.githubusercontent.com/itsgeegeez/FIT3179-Data-Viz-2/refs/heads/main/data/results_parlimen_ge15.csv" },
     "transform": [
         {
             "aggregate": [
@@ -36,8 +36,8 @@
                     "sort": "-x",
                     "title": "State",
                     "axis": {
-                        "labelFontSize": 10,
-                        "titleFontSize": 11
+                        "labelFontSize": 12,
+                        "titleFontSize": 14
                     }
                 },
                 "x": {
@@ -45,9 +45,12 @@
                     "type": "quantitative",
                     "title": "Average Majority Votes",
                     "axis": {
-                        "labelFontSize": 10,
-                        "titleFontSize": 11
+                        "labelFontSize": 12,
+                        "titleFontSize": 14
                     }
+                },
+                "color": {
+                    "value": "#010066"
                 },
                 "tooltip": [
                     { "field": "state", "type": "nominal", "title": "State" },

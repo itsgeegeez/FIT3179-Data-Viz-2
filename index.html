@@ -10,6 +10,8 @@
         <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
         <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
         <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Reference index.css -->
+        <link rel="stylesheet" href="index.css" />
 
         <title>Tay Tshung Wen FIT3179 Data Viz 2 - Malaysia General Election 2022</title>
     </head>
@@ -29,75 +31,714 @@
             vegaEmbed('#age', vg_3, { actions: false })
                 .then(function (result) {})
                 .catch(console.error);
-            var vg_4 = './type.vg.json';
-            vegaEmbed('#type', vg_4, { actions: false })
+            var vg_4 = './chart1.vg.json';
+            vegaEmbed('#chart1', vg_4, { actions: false })
                 .then(function (result) {})
                 .catch(console.error);
+            var vg_5 = './chart2.vg.json';
+            vegaEmbed('#chart2', vg_5, { actions: false })
+                .then(function (result) {})
+                .catch(console.error);
+            var vg_6 = './chart3.vg.json';
+            vegaEmbed('#chart3', vg_6, { actions: false })
+                .then(function (result) {})
+                .catch(console.error);
+
+            function updateChart(value) {
+                const view1 = vegaEmbed('#chart1', vg_4, { actions: false }).then((result) => {
+                    result.view.signal('dun_selection', value).run();
+                });
+                const view2 = vegaEmbed('#chart2', vg_5, { actions: false }).then((result) => {
+                    result.view.signal('dun_selection', value).run();
+                });
+                const view3 = vegaEmbed('#chart3', vg_6, { actions: false }).then((result) => {
+                    result.view.signal('dun_selection', value).run();
+                });
+                const view999 = vegaEmbed('#age', vg_3, { actions: false }).then((result) => {
+                    result.view.signal('dun_selection', value).run();
+                });
+            }
+            document.addEventListener('DOMContentLoaded', () => {
+                document.getElementById('constituency-select').addEventListener('change', function () {
+                    updateChart(this.value);
+                });
+            });
         </script>
-        <div
-            class="mx-auto my-8 bg-blue p-8 shadow-lg border border-solid border-black/24 w-[1280px] flex flex-col gap-8"
-        >
-            <div class="flex flex-col align-center justify-center">
-                <p class="text-[18pt] font-serif font-black text-center">Malaysia General Election 2022</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue tellus, condimentum ac libero
-                    nec, pretium accumsan sem. Cras pretium elit nec mollis auctor. Sed urna justo, tempor sit amet nisi
-                    a, pharetra tincidunt arcu. Praesent pulvinar, ante id gravida facilisis, ligula lorem auctor
-                    libero, sit amet iaculis ipsum nibh a nibh. Donec sit amet velit congue, tempor lorem a, pulvinar
-                    nunc. Phasellus eleifend porttitor libero, quis finibus sem consequat ut.
+        <div class="mx-auto my-8 p-8 w-[1280px] flex flex-col gap-8">
+            <div class="flex bg-[#010066] shadow-lg text-white p-8 flex-col align-center justify-center">
+                <p class="title font-black text-center">
+                    Malaysia General Election <span class="text-[#ffcc00]">2022</span>
                 </p>
             </div>
-            <div class="flex w-full gap-4 h-[384px]" id="map"></div>
-            <div class="h-[256px] gap-4 flex flex-row">
+            <div class="shadow-lg border border-solid border-black/24 p-8">
+                <p class="body">
+                    The 2022 Malaysian General Election map showcases a
+                    <strong>diverse political landscape</strong> across the country. Peninsular Malaysia displays a
+                    competitive mix of parties, while Borneo presents more regional dominance. This visualization
+                    highlights stark differences in <strong>political allegiances</strong> between the peninsula and
+                    Borneo states, reflecting Malaysia's <strong>complex cultural and demographic tapestry</strong>.
+                </p>
+                <div class="flex w-full gap-4 h-[512px]" id="map"></div>
+            </div>
+            <div class="h-[512px] gap-4 flex flex-col shadow-lg border border-solid border-black/24 p-8">
+                <div class="flex flex-col gap-2 justify-center">
+                    <p class="font-black section-title">
+                        <span class="highlight">Top 10</span> states with highest average majority votes
+                    </p>
+                    <p class="text-justify body">
+                        This bar chart compares average majority votes across Malaysian states and federal territories.
+                        <strong>Selangor</strong> leads with the highest average, followed by
+                        <strong>Kuala Lumpur</strong> and <strong>Pulau Pinang</strong>. There's a significant range in
+                        voter majorities, from Selangor's ~32,000 votes to minimal margins in places like W.P. Labuan.
+                        The visualization reveals varied levels of <strong>electoral competitiveness</strong> across
+                        Malaysia's regions.
+                    </p>
+                </div>
                 <div class="h-full flex-grow" id="majority_by_state"></div>
-                <div class="w-[384px] flex flex-col gap-2">
-                    <p class="font-black text-[18pt] font-serif">Top 10 states with highest average majority votes</p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue tellus, condimentum ac
-                        libero nec, pretium accumsan sem. Cras pretium elit nec mollis auctor. Sed urna justo, tempor
-                        sit amet nisi a, pharetra tincidunt arcu. Praesent pulvinar, ante id gravida facilisis, ligula
-                        lorem auctor libero, sit amet iaculis ipsum nibh a nibh.
-                    </p>
-                </div>
             </div>
-            <div class="h-[256px] gap-4 flex flex-row w-full">
-                <div class="flex w-[736px] flex-col gap-2">
-                    <div class="font-black text-[18pt] font-serif whitespace-nowrap">
-                        <p class="inline-block w-fit">Voter age and gender distribution at</p>
-                        <span class="inline-block h-min w-fit" id="age-select"></span>
-                    </div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue tellus, condimentum ac
-                        libero nec, pretium accumsan sem. Cras pretium elit nec mollis auctor. Sed urna justo, tempor
-                        sit amet nisi a, pharetra tincidunt arcu. Praesent pulvinar, ante id gravida facilisis, ligula
-                        lorem auctor libero, sit amet iaculis ipsum nibh a nibh. Donec sit amet velit congue, tempor
-                        lorem a, pulvinar nunc. Phasellus eleifend porttitor libero, quis finibus sem consequat ut. Duis
-                        quis accumsan neque. Nam non magna mi. Vivamus ullamcorper feugiat ipsum, eget tempus quam.
-                        Pellentesque dapibus turpis mi, vel lacinia ipsum hendrerit et. Donec interdum ligula non lorem
-                        tincidunt, at blandit mi gravida.
-                    </p>
-                </div>
-                <div class="h-full flex-grow" id="age"></div>
-            </div>
-            <div class="h-[256px] gap-4 flex flex-row">
-                <div class="h-full w-full" id="type"></div>
+            <div class="gap-4 flex flex-col shadow-lg border border-solid border-black/24 p-8">
                 <div class="flex-grow flex flex-col gap-2">
-                    <div class="font-black text-[18pt] font-serif">
-                        <p class="inline-block w-fit">Voter age and gender distribution at</p>
-                        <span class="inline-block h-min w-fit" id="type-select"></span>
+                    <div class="font-black section-title">
+                        <p class="inline-block w-fit">Demographic summary of state legislative</p>
+                        <select id="constituency-select" class="inline-block h-min w-fit highlight">
+                            <option value="N.01 Titi Tinggi">Titi Tinggi</option>
+                            <option value="N.02 Beseri">Beseri</option>
+                            <option value="N.03 Chuping">Chuping</option>
+                            <option value="N.04 Mata Ayer">Mata Ayer</option>
+                            <option value="N.05 Santan">Santan</option>
+                            <option value="N.06 Bintong">Bintong</option>
+                            <option value="N.07 Sena">Sena</option>
+                            <option value="N.08 Indera Kayangan">Indera Kayangan</option>
+                            <option value="N.09 Kuala Perlis">Kuala Perlis</option>
+                            <option value="N.10 Kayang">Kayang</option>
+                            <option value="N.11 Pauh">Pauh</option>
+                            <option value="N.12 Tambun Tulang">Tambun Tulang</option>
+                            <option value="N.13 Guar Sanji">Guar Sanji</option>
+                            <option value="N.14 Simpang Empat">Simpang Empat</option>
+                            <option value="N.15 Sanglang">Sanglang</option>
+                            <option value="N.01 Ayer Hangat">Ayer Hangat</option>
+                            <option value="N.02 Kuah">Kuah</option>
+                            <option value="N.03 Kota Siputeh">Kota Siputeh</option>
+                            <option value="N.04 Ayer Hitam">Ayer Hitam</option>
+                            <option value="N.05 Bukit Kayu Hitam">Bukit Kayu Hitam</option>
+                            <option value="N.06 Jitra">Jitra</option>
+                            <option value="N.07 Kuala Nerang">Kuala Nerang</option>
+                            <option value="N.08 Pedu">Pedu</option>
+                            <option value="N.09 Bukit Lada">Bukit Lada</option>
+                            <option value="N.10 Bukit Pinang">Bukit Pinang</option>
+                            <option value="N.11 Derga">Derga</option>
+                            <option value="N.12 Suka Menanti">Suka Menanti</option>
+                            <option value="N.13 Kota Darul Aman">Kota Darul Aman</option>
+                            <option value="N.14 Alor Mengkudu">Alor Mengkudu</option>
+                            <option value="N.15 Anak Bukit">Anak Bukit</option>
+                            <option value="N.16 Kubang Rotan">Kubang Rotan</option>
+                            <option value="N.17 Pengkalan Kundor">Pengkalan Kundor</option>
+                            <option value="N.18 Tokai">Tokai</option>
+                            <option value="N.19 Sungai Tiang">Sungai Tiang</option>
+                            <option value="N.20 Sungai Limau">Sungai Limau</option>
+                            <option value="N.21 Guar Chempedak">Guar Chempedak</option>
+                            <option value="N.22 Gurun">Gurun</option>
+                            <option value="N.23 Belantek">Belantek</option>
+                            <option value="N.24 Jeneri">Jeneri</option>
+                            <option value="N.25 Bukit Selambau">Bukit Selambau</option>
+                            <option value="N.26 Tanjong Dawai">Tanjong Dawai</option>
+                            <option value="N.27 Pantai Merdeka">Pantai Merdeka</option>
+                            <option value="N.28 Bakar Arang">Bakar Arang</option>
+                            <option value="N.29 Sidam">Sidam</option>
+                            <option value="N.30 Bayu">Bayu</option>
+                            <option value="N.31 Kupang">Kupang</option>
+                            <option value="N.32 Kuala Ketil">Kuala Ketil</option>
+                            <option value="N.33 Merbau Pulas">Merbau Pulas</option>
+                            <option value="N.34 Lunas">Lunas</option>
+                            <option value="N.35 Kulim">Kulim</option>
+                            <option value="N.36 Bandar Baharu">Bandar Baharu</option>
+                            <option value="N.01 Pengkalan Kubor">Pengkalan Kubor</option>
+                            <option value="N.02 Kelaboran">Kelaboran</option>
+                            <option value="N.03 Pasir Pekan">Pasir Pekan</option>
+                            <option value="N.04 Wakaf Bharu">Wakaf Bharu</option>
+                            <option value="N.05 Kijang">Kijang</option>
+                            <option value="N.06 Chempaka">Chempaka</option>
+                            <option value="N.07 Panchor">Panchor</option>
+                            <option value="N.08 Tanjong Mas">Tanjong Mas</option>
+                            <option value="N.09 Kota Lama">Kota Lama</option>
+                            <option value="N.10 Bunut Payong">Bunut Payong</option>
+                            <option value="N.11 Tendong">Tendong</option>
+                            <option value="N.12 Pengkalan Pasir">Pengkalan Pasir</option>
+                            <option value="N.13 Meranti">Meranti</option>
+                            <option value="N.14 Chetok">Chetok</option>
+                            <option value="N.15 Gual Periok">Gual Periok</option>
+                            <option value="N.16 Apam Putra">Apam Putra</option>
+                            <option value="N.17 Salor">Salor</option>
+                            <option value="N.18 Pasir Tumboh">Pasir Tumboh</option>
+                            <option value="N.19 Demit">Demit</option>
+                            <option value="N.20 Tawang">Tawang</option>
+                            <option value="N.21 Pantai Irama">Pantai Irama</option>
+                            <option value="N.22 Jelawat">Jelawat</option>
+                            <option value="N.23 Melor">Melor</option>
+                            <option value="N.24 Kadok">Kadok</option>
+                            <option value="N.25 Kok Lanas">Kok Lanas</option>
+                            <option value="N.26 Bukit Panau">Bukit Panau</option>
+                            <option value="N.27 Gual Ipoh">Gual Ipoh</option>
+                            <option value="N.28 Kemahang">Kemahang</option>
+                            <option value="N.29 Selising">Selising</option>
+                            <option value="N.30 Limbongan">Limbongan</option>
+                            <option value="N.31 Semerak">Semerak</option>
+                            <option value="N.32 Gaal">Gaal</option>
+                            <option value="N.33 Pulai Chondong">Pulai Chondong</option>
+                            <option value="N.34 Temangan">Temangan</option>
+                            <option value="N.35 Kemuning">Kemuning</option>
+                            <option value="N.36 Bukit Bunga">Bukit Bunga</option>
+                            <option value="N.37 Air Lanas">Air Lanas</option>
+                            <option value="N.38 Kuala Balah">Kuala Balah</option>
+                            <option value="N.39 Mengkebang">Mengkebang</option>
+                            <option value="N.40 Guchil">Guchil</option>
+                            <option value="N.41 Manek Urai">Manek Urai</option>
+                            <option value="N.42 Dabong">Dabong</option>
+                            <option value="N.43 Nenggiri">Nenggiri</option>
+                            <option value="N.44 Paloh">Paloh</option>
+                            <option value="N.45 Galas">Galas</option>
+                            <option value="N.01 Kuala Besut">Kuala Besut</option>
+                            <option value="N.02 Kota Putera">Kota Putera</option>
+                            <option value="N.03 Jertih">Jertih</option>
+                            <option value="N.04 Hulu Besut">Hulu Besut</option>
+                            <option value="N.05 Jabi">Jabi</option>
+                            <option value="N.06 Permaisuri">Permaisuri</option>
+                            <option value="N.07 Langkap">Langkap</option>
+                            <option value="N.08 Batu Rakit">Batu Rakit</option>
+                            <option value="N.09 Tepuh">Tepuh</option>
+                            <option value="N.10 Buluh Gading">Buluh Gading</option>
+                            <option value="N.11 Seberang Takir">Seberang Takir</option>
+                            <option value="N.12 Bukit Tunggal">Bukit Tunggal</option>
+                            <option value="N.13 Wakaf Mempelam">Wakaf Mempelam</option>
+                            <option value="N.14 Bandar">Bandar</option>
+                            <option value="N.15 Ladang">Ladang</option>
+                            <option value="N.16 Batu Buruk">Batu Buruk</option>
+                            <option value="N.17 Alur Limbat">Alur Limbat</option>
+                            <option value="N.18 Bukit Payung">Bukit Payung</option>
+                            <option value="N.19 Ru Rendang">Ru Rendang</option>
+                            <option value="N.20 Pengkalan Berangan">Pengkalan Berangan</option>
+                            <option value="N.21 Telemung">Telemung</option>
+                            <option value="N.22 Manir">Manir</option>
+                            <option value="N.23 Kuala Berang">Kuala Berang</option>
+                            <option value="N.24 Ajil">Ajil</option>
+                            <option value="N.25 Bukit Besi">Bukit Besi</option>
+                            <option value="N.26 Rantau Abang">Rantau Abang</option>
+                            <option value="N.27 Sura">Sura</option>
+                            <option value="N.28 Paka">Paka</option>
+                            <option value="N.29 Kemasik">Kemasik</option>
+                            <option value="N.30 Kijal">Kijal</option>
+                            <option value="N.31 Cukai">Cukai</option>
+                            <option value="N.32 Air Putih">Air Putih</option>
+                            <option value="N.01 Penaga">Penaga</option>
+                            <option value="N.02 Bertam">Bertam</option>
+                            <option value="N.03 Pinang Tunggal">Pinang Tunggal</option>
+                            <option value="N.04 Permatang Berangan">Permatang Berangan</option>
+                            <option value="N.05 Sungai Dua">Sungai Dua</option>
+                            <option value="N.06 Telok Ayer Tawar">Telok Ayer Tawar</option>
+                            <option value="N.07 Sungai Puyu">Sungai Puyu</option>
+                            <option value="N.08 Bagan Jermal">Bagan Jermal</option>
+                            <option value="N.09 Bagan Dalam">Bagan Dalam</option>
+                            <option value="N.10 Seberang Jaya">Seberang Jaya</option>
+                            <option value="N.11 Permatang Pasir">Permatang Pasir</option>
+                            <option value="N.12 Penanti">Penanti</option>
+                            <option value="N.13 Berapit">Berapit</option>
+                            <option value="N.14 Machang Bubuk">Machang Bubuk</option>
+                            <option value="N.15 Padang Lalang">Padang Lalang</option>
+                            <option value="N.16 Perai">Perai</option>
+                            <option value="N.17 Bukit Tengah">Bukit Tengah</option>
+                            <option value="N.18 Bukit Tambun">Bukit Tambun</option>
+                            <option value="N.19 Jawi">Jawi</option>
+                            <option value="N.20 Sungai Bakap">Sungai Bakap</option>
+                            <option value="N.21 Sungai Acheh">Sungai Acheh</option>
+                            <option value="N.22 Tanjong Bunga">Tanjong Bunga</option>
+                            <option value="N.23 Air Putih">Air Putih</option>
+                            <option value="N.24 Kebun Bunga">Kebun Bunga</option>
+                            <option value="N.25 Pulau Tikus">Pulau Tikus</option>
+                            <option value="N.26 Padang Kota">Padang Kota</option>
+                            <option value="N.27 Pengkalan Kota">Pengkalan Kota</option>
+                            <option value="N.28 Komtar">Komtar</option>
+                            <option value="N.29 Datok Keramat">Datok Keramat</option>
+                            <option value="N.30 Sungai Pinang">Sungai Pinang</option>
+                            <option value="N.31 Batu Lancang">Batu Lancang</option>
+                            <option value="N.32 Seri Delima">Seri Delima</option>
+                            <option value="N.33 Air Itam">Air Itam</option>
+                            <option value="N.34 Paya Terubong">Paya Terubong</option>
+                            <option value="N.35 Batu Uban">Batu Uban</option>
+                            <option value="N.36 Pantai Jerejak">Pantai Jerejak</option>
+                            <option value="N.37 Batu Maung">Batu Maung</option>
+                            <option value="N.38 Bayan Lepas">Bayan Lepas</option>
+                            <option value="N.39 Pulau Betong">Pulau Betong</option>
+                            <option value="N.40 Telok Bahang">Telok Bahang</option>
+                            <option value="N.01 Pengkalan Hulu">Pengkalan Hulu</option>
+                            <option value="N.02 Temengor">Temengor</option>
+                            <option value="N.03 Kenering">Kenering</option>
+                            <option value="N.04 Kota Tampan">Kota Tampan</option>
+                            <option value="N.05 Selama">Selama</option>
+                            <option value="N.06 Kubu Gajah">Kubu Gajah</option>
+                            <option value="N.07 Batu Kurau">Batu Kurau</option>
+                            <option value="N.08 Titi Serong">Titi Serong</option>
+                            <option value="N.09 Kuala Kurau">Kuala Kurau</option>
+                            <option value="N.10 Alor Pongsu">Alor Pongsu</option>
+                            <option value="N.11 Gunong Semanggol">Gunong Semanggol</option>
+                            <option value="N.12 Selinsing">Selinsing</option>
+                            <option value="N.13 Kuala Sepetang">Kuala Sepetang</option>
+                            <option value="N.14 Changkat Jering">Changkat Jering</option>
+                            <option value="N.15 Trong">Trong</option>
+                            <option value="N.16 Kamunting">Kamunting</option>
+                            <option value="N.17 Pokok Assam">Pokok Assam</option>
+                            <option value="N.18 Aulong">Aulong</option>
+                            <option value="N.19 Chenderoh">Chenderoh</option>
+                            <option value="N.20 Lubok Merbau">Lubok Merbau</option>
+                            <option value="N.21 Lintang">Lintang</option>
+                            <option value="N.22 Jalong">Jalong</option>
+                            <option value="N.23 Manjoi">Manjoi</option>
+                            <option value="N.24 Hulu Kinta">Hulu Kinta</option>
+                            <option value="N.25 Canning">Canning</option>
+                            <option value="N.26 Tebing Tinggi">Tebing Tinggi</option>
+                            <option value="N.27 Pasir Pinji">Pasir Pinji</option>
+                            <option value="N.28 Bercham">Bercham</option>
+                            <option value="N.29 Kepayang">Kepayang</option>
+                            <option value="N.30 Buntong">Buntong</option>
+                            <option value="N.31 Jelapang">Jelapang</option>
+                            <option value="N.32 Menglembu">Menglembu</option>
+                            <option value="N.33 Tronoh">Tronoh</option>
+                            <option value="N.34 Bukit Chandan">Bukit Chandan</option>
+                            <option value="N.35 Manong">Manong</option>
+                            <option value="N.36 Pengkalan Baharu">Pengkalan Baharu</option>
+                            <option value="N.37 Pantai Remis">Pantai Remis</option>
+                            <option value="N.38 Astaka">Astaka</option>
+                            <option value="N.39 Belanja">Belanja</option>
+                            <option value="N.40 Bota">Bota</option>
+                            <option value="N.41 Malim Nawar">Malim Nawar</option>
+                            <option value="N.42 Keranji">Keranji</option>
+                            <option value="N.43 Tualang Sekah">Tualang Sekah</option>
+                            <option value="N.44 Sungai Rapat">Sungai Rapat</option>
+                            <option value="N.45 Simpang Pulai">Simpang Pulai</option>
+                            <option value="N.46 Teja">Teja</option>
+                            <option value="N.47 Chenderiang">Chenderiang</option>
+                            <option value="N.48 Ayer Kuning">Ayer Kuning</option>
+                            <option value="N.49 Sungai Manik">Sungai Manik</option>
+                            <option value="N.50 Kampong Gajah">Kampong Gajah</option>
+                            <option value="N.51 Pasir Panjang">Pasir Panjang</option>
+                            <option value="N.52 Pangkor">Pangkor</option>
+                            <option value="N.53 Rungkup">Rungkup</option>
+                            <option value="N.54 Hutan Melintang">Hutan Melintang</option>
+                            <option value="N.55 Pasir Bedamar">Pasir Bedamar</option>
+                            <option value="N.56 Changkat Jong">Changkat Jong</option>
+                            <option value="N.57 Sungkai">Sungkai</option>
+                            <option value="N.58 Slim">Slim</option>
+                            <option value="N.59 Behrang">Behrang</option>
+                            <option value="N.01 Tanah Rata">Tanah Rata</option>
+                            <option value="N.02 Jelai">Jelai</option>
+                            <option value="N.03 Padang Tengku">Padang Tengku</option>
+                            <option value="N.04 Cheka">Cheka</option>
+                            <option value="N.05 Benta">Benta</option>
+                            <option value="N.06 Batu Talam">Batu Talam</option>
+                            <option value="N.07 Tras">Tras</option>
+                            <option value="N.08 Dong">Dong</option>
+                            <option value="N.09 Tahan">Tahan</option>
+                            <option value="N.10 Damak">Damak</option>
+                            <option value="N.11 Pulau Tawar">Pulau Tawar</option>
+                            <option value="N.12 Beserah">Beserah</option>
+                            <option value="N.13 Semambu">Semambu</option>
+                            <option value="N.14 Teruntum">Teruntum</option>
+                            <option value="N.15 Tanjung Lumpur">Tanjung Lumpur</option>
+                            <option value="N.16 Inderapura">Inderapura</option>
+                            <option value="N.17 Sungai Lembing">Sungai Lembing</option>
+                            <option value="N.18 Lepar">Lepar</option>
+                            <option value="N.19 Panching">Panching</option>
+                            <option value="N.20 Pulau Manis">Pulau Manis</option>
+                            <option value="N.21 Peramu Jaya">Peramu Jaya</option>
+                            <option value="N.22 Bebar">Bebar</option>
+                            <option value="N.23 Chini">Chini</option>
+                            <option value="N.24 Luit">Luit</option>
+                            <option value="N.25 Kuala Sentul">Kuala Sentul</option>
+                            <option value="N.26 Chenor">Chenor</option>
+                            <option value="N.27 Jenderak">Jenderak</option>
+                            <option value="N.28 Kerdau">Kerdau</option>
+                            <option value="N.29 Jengka">Jengka</option>
+                            <option value="N.30 Mentakab">Mentakab</option>
+                            <option value="N.31 Lanchang">Lanchang</option>
+                            <option value="N.32 Kuala Semantan">Kuala Semantan</option>
+                            <option value="N.33 Bilut">Bilut</option>
+                            <option value="N.34 Ketari">Ketari</option>
+                            <option value="N.35 Sabai">Sabai</option>
+                            <option value="N.36 Pelangai">Pelangai</option>
+                            <option value="N.37 Guai">Guai</option>
+                            <option value="N.38 Triang">Triang</option>
+                            <option value="N.39 Kemayan">Kemayan</option>
+                            <option value="N.40 Bukit Ibam">Bukit Ibam</option>
+                            <option value="N.41 Muadzam Shah">Muadzam Shah</option>
+                            <option value="N.42 Tioman">Tioman</option>
+                            <option value="N.01 Sungai Air Tawar">Sungai Air Tawar</option>
+                            <option value="N.02 Sabak">Sabak</option>
+                            <option value="N.03 Sungai Panjang">Sungai Panjang</option>
+                            <option value="N.04 Sekinchan">Sekinchan</option>
+                            <option value="N.05 Hulu Bernam">Hulu Bernam</option>
+                            <option value="N.06 Kuala Kubu Baharu">Kuala Kubu Baharu</option>
+                            <option value="N.07 Batang Kali">Batang Kali</option>
+                            <option value="N.08 Sungai Burong">Sungai Burong</option>
+                            <option value="N.09 Permatang">Permatang</option>
+                            <option value="N.10 Bukit Melawati">Bukit Melawati</option>
+                            <option value="N.11 Ijok">Ijok</option>
+                            <option value="N.12 Jeram">Jeram</option>
+                            <option value="N.13 Kuang">Kuang</option>
+                            <option value="N.14 Rawang">Rawang</option>
+                            <option value="N.15 Taman Templer">Taman Templer</option>
+                            <option value="N.16 Sungai Tua">Sungai Tua</option>
+                            <option value="N.17 Gombak Setia">Gombak Setia</option>
+                            <option value="N.18 Hulu Kelang">Hulu Kelang</option>
+                            <option value="N.19 Bukit Antarabangsa">Bukit Antarabangsa</option>
+                            <option value="N.20 Lembah Jaya">Lembah Jaya</option>
+                            <option value="N.21 Pandan Indah">Pandan Indah</option>
+                            <option value="N.22 Teratai">Teratai</option>
+                            <option value="N.23 Dusun Tua">Dusun Tua</option>
+                            <option value="N.24 Semenyih">Semenyih</option>
+                            <option value="N.25 Kajang">Kajang</option>
+                            <option value="N.26 Sungai Ramal">Sungai Ramal</option>
+                            <option value="N.27 Balakong">Balakong</option>
+                            <option value="N.28 Seri Kembangan">Seri Kembangan</option>
+                            <option value="N.29 Seri Serdang">Seri Serdang</option>
+                            <option value="N.30 Kinrara">Kinrara</option>
+                            <option value="N.31 Subang Jaya">Subang Jaya</option>
+                            <option value="N.32 Seri Setia">Seri Setia</option>
+                            <option value="N.33 Taman Medan">Taman Medan</option>
+                            <option value="N.34 Bukit Gasing">Bukit Gasing</option>
+                            <option value="N.35 Kampung Tunku">Kampung Tunku</option>
+                            <option value="N.36 Bandar Utama">Bandar Utama</option>
+                            <option value="N.37 Bukit Lanjan">Bukit Lanjan</option>
+                            <option value="N.38 Paya Jaras">Paya Jaras</option>
+                            <option value="N.39 Kota Damansara">Kota Damansara</option>
+                            <option value="N.40 Kota Anggerik">Kota Anggerik</option>
+                            <option value="N.41 Batu Tiga">Batu Tiga</option>
+                            <option value="N.42 Meru">Meru</option>
+                            <option value="N.43 Sementa">Sementa</option>
+                            <option value="N.44 Selat Klang">Selat Klang</option>
+                            <option value="N.45 Bandar Baru Klang">Bandar Baru Klang</option>
+                            <option value="N.46 Pelabuhan Klang">Pelabuhan Klang</option>
+                            <option value="N.47 Pandamaran">Pandamaran</option>
+                            <option value="N.48 Sentosa">Sentosa</option>
+                            <option value="N.49 Sungai Kandis">Sungai Kandis</option>
+                            <option value="N.50 Kota Kemuning">Kota Kemuning</option>
+                            <option value="N.51 Sijangkang">Sijangkang</option>
+                            <option value="N.52 Banting">Banting</option>
+                            <option value="N.53 Morib">Morib</option>
+                            <option value="N.54 Tanjong Sepat">Tanjong Sepat</option>
+                            <option value="N.55 Dengkil">Dengkil</option>
+                            <option value="N.56 Sungai Pelek">Sungai Pelek</option>
+                            <option value="P.114 Kepong">Kepong</option>
+                            <option value="P.115 Batu">Batu</option>
+                            <option value="P.116 Wangsa Maju">Wangsa Maju</option>
+                            <option value="P.117 Segambut">Segambut</option>
+                            <option value="P.118 Setiawangsa">Setiawangsa</option>
+                            <option value="P.119 Titiwangsa">Titiwangsa</option>
+                            <option value="P.120 Bukit Bintang">Bukit Bintang</option>
+                            <option value="P.121 Lembah Pantai">Lembah Pantai</option>
+                            <option value="P.122 Seputeh">Seputeh</option>
+                            <option value="P.123 Cheras">Cheras</option>
+                            <option value="P.124 Bandar Tun Razak">Bandar Tun Razak</option>
+                            <option value="P.125 Putrajaya">Putrajaya</option>
+                            <option value="N.01 Chennah">Chennah</option>
+                            <option value="N.02 Pertang">Pertang</option>
+                            <option value="N.03 Sungai Lui">Sungai Lui</option>
+                            <option value="N.04 Klawang">Klawang</option>
+                            <option value="N.05 Serting">Serting</option>
+                            <option value="N.06 Palong">Palong</option>
+                            <option value="N.07 Jeram Padang">Jeram Padang</option>
+                            <option value="N.08 Bahau">Bahau</option>
+                            <option value="N.09 Lenggeng">Lenggeng</option>
+                            <option value="N.10 Nilai">Nilai</option>
+                            <option value="N.11 Lobak">Lobak</option>
+                            <option value="N.12 Temiang">Temiang</option>
+                            <option value="N.13 Sikamat">Sikamat</option>
+                            <option value="N.14 Ampangan">Ampangan</option>
+                            <option value="N.15 Juasseh">Juasseh</option>
+                            <option value="N.16 Seri Menanti">Seri Menanti</option>
+                            <option value="N.17 Senaling">Senaling</option>
+                            <option value="N.18 Pilah">Pilah</option>
+                            <option value="N.19 Johol">Johol</option>
+                            <option value="N.20 Labu">Labu</option>
+                            <option value="N.21 Bukit Kepayang">Bukit Kepayang</option>
+                            <option value="N.22 Rahang">Rahang</option>
+                            <option value="N.23 Mambau">Mambau</option>
+                            <option value="N.24 Seremban Jaya">Seremban Jaya</option>
+                            <option value="N.25 Paroi">Paroi</option>
+                            <option value="N.26 Chembong">Chembong</option>
+                            <option value="N.27 Rantau">Rantau</option>
+                            <option value="N.28 Kota">Kota</option>
+                            <option value="N.29 Chuah">Chuah</option>
+                            <option value="N.30 Lukut">Lukut</option>
+                            <option value="N.31 Bagan Pinang">Bagan Pinang</option>
+                            <option value="N.32 Linggi">Linggi</option>
+                            <option value="N.33 Sri Tanjung">Sri Tanjung</option>
+                            <option value="N.34 Gemas">Gemas</option>
+                            <option value="N.35 Gemencheh">Gemencheh</option>
+                            <option value="N.36 Repah">Repah</option>
+                            <option value="N.01 Kuala Linggi">Kuala Linggi</option>
+                            <option value="N.02 Tanjung Bidara">Tanjung Bidara</option>
+                            <option value="N.03 Ayer Limau">Ayer Limau</option>
+                            <option value="N.04 Lendu">Lendu</option>
+                            <option value="N.05 Taboh Naning">Taboh Naning</option>
+                            <option value="N.06 Rembia">Rembia</option>
+                            <option value="N.07 Gadek">Gadek</option>
+                            <option value="N.08 Machap Jaya">Machap Jaya</option>
+                            <option value="N.09 Durian Tunggal">Durian Tunggal</option>
+                            <option value="N.10 Asahan">Asahan</option>
+                            <option value="N.11 Sungai Udang">Sungai Udang</option>
+                            <option value="N.12 Pantai Kundor">Pantai Kundor</option>
+                            <option value="N.13 Paya Rumput">Paya Rumput</option>
+                            <option value="N.14 Kelebang">Kelebang</option>
+                            <option value="N.15 Pengkalan Batu">Pengkalan Batu</option>
+                            <option value="N.16 Ayer Keroh">Ayer Keroh</option>
+                            <option value="N.17 Bukit Katil">Bukit Katil</option>
+                            <option value="N.18 Ayer Molek">Ayer Molek</option>
+                            <option value="N.19 Kesidang">Kesidang</option>
+                            <option value="N.20 Kota Laksamana">Kota Laksamana</option>
+                            <option value="N.21 Duyong">Duyong</option>
+                            <option value="N.22 Bandar Hilir">Bandar Hilir</option>
+                            <option value="N.23 Telok Mas">Telok Mas</option>
+                            <option value="N.24 Bemban">Bemban</option>
+                            <option value="N.25 Rim">Rim</option>
+                            <option value="N.26 Serkam">Serkam</option>
+                            <option value="N.27 Merlimau">Merlimau</option>
+                            <option value="N.28 Sungai Rambai">Sungai Rambai</option>
+                            <option value="N.01 Buloh Kasap">Buloh Kasap</option>
+                            <option value="N.02 Jementah">Jementah</option>
+                            <option value="N.03 Pemanis">Pemanis</option>
+                            <option value="N.04 Kemelah">Kemelah</option>
+                            <option value="N.05 Tenang">Tenang</option>
+                            <option value="N.06 Bekok">Bekok</option>
+                            <option value="N.07 Bukit Kepong">Bukit Kepong</option>
+                            <option value="N.08 Bukit Pasir">Bukit Pasir</option>
+                            <option value="N.09 Gambir">Gambir</option>
+                            <option value="N.10 Tangkak">Tangkak</option>
+                            <option value="N.11 Serom">Serom</option>
+                            <option value="N.12 Bentayan">Bentayan</option>
+                            <option value="N.13 Simpang Jeram">Simpang Jeram</option>
+                            <option value="N.14 Bukit Naning">Bukit Naning</option>
+                            <option value="N.15 Maharani">Maharani</option>
+                            <option value="N.16 Sungai Balang">Sungai Balang</option>
+                            <option value="N.17 Semerah">Semerah</option>
+                            <option value="N.18 Sri Medan">Sri Medan</option>
+                            <option value="N.19 Yong Peng">Yong Peng</option>
+                            <option value="N.20 Semarang">Semarang</option>
+                            <option value="N.21 Parit Yaani">Parit Yaani</option>
+                            <option value="N.22 Parit Raja">Parit Raja</option>
+                            <option value="N.23 Penggaram">Penggaram</option>
+                            <option value="N.24 Senggarang">Senggarang</option>
+                            <option value="N.25 Rengit">Rengit</option>
+                            <option value="N.26 Machap">Machap</option>
+                            <option value="N.27 Layang-Layang">Layang-Layang</option>
+                            <option value="N.28 Mengkibol">Mengkibol</option>
+                            <option value="N.29 Mahkota">Mahkota</option>
+                            <option value="N.30 Paloh">Paloh</option>
+                            <option value="N.31 Kahang">Kahang</option>
+                            <option value="N.32 Endau">Endau</option>
+                            <option value="N.33 Tenggaroh">Tenggaroh</option>
+                            <option value="N.34 Panti">Panti</option>
+                            <option value="N.35 Pasir Raja">Pasir Raja</option>
+                            <option value="N.36 Sedili">Sedili</option>
+                            <option value="N.37 Johor Lama">Johor Lama</option>
+                            <option value="N.38 Penawar">Penawar</option>
+                            <option value="N.39 Tanjung Surat">Tanjung Surat</option>
+                            <option value="N.40 Tiram">Tiram</option>
+                            <option value="N.41 Puteri Wangsa">Puteri Wangsa</option>
+                            <option value="N.42 Johor Jaya">Johor Jaya</option>
+                            <option value="N.43 Permas">Permas</option>
+                            <option value="N.44 Larkin">Larkin</option>
+                            <option value="N.45 Stulang">Stulang</option>
+                            <option value="N.46 Perling">Perling</option>
+                            <option value="N.47 Kempas">Kempas</option>
+                            <option value="N.48 Skudai">Skudai</option>
+                            <option value="N.49 Kota Iskandar">Kota Iskandar</option>
+                            <option value="N.50 Bukit Permai">Bukit Permai</option>
+                            <option value="N.51 Bukit Batu">Bukit Batu</option>
+                            <option value="N.52 Senai">Senai</option>
+                            <option value="N.53 Benut">Benut</option>
+                            <option value="N.54 Pulai Sebatang">Pulai Sebatang</option>
+                            <option value="N.55 Pekan Nanas">Pekan Nanas</option>
+                            <option value="N.56 Kukup">Kukup</option>
+                            <option value="P.166 Labuan">Labuan</option>
+                            <option value="N.01 Banggi">Banggi</option>
+                            <option value="N.02 Bengkoka">Bengkoka</option>
+                            <option value="N.03 Pitas">Pitas</option>
+                            <option value="N.04 Tanjong Kapor">Tanjong Kapor</option>
+                            <option value="N.05 Matunggong">Matunggong</option>
+                            <option value="N.06 Bandau">Bandau</option>
+                            <option value="N.07 Tandek">Tandek</option>
+                            <option value="N.08 Pintasan">Pintasan</option>
+                            <option value="N.09 Tempasuk">Tempasuk</option>
+                            <option value="N.10 Usukan">Usukan</option>
+                            <option value="N.11 Kadamaian">Kadamaian</option>
+                            <option value="N.12 Sulaman">Sulaman</option>
+                            <option value="N.13 Pantai Dalit">Pantai Dalit</option>
+                            <option value="N.14 Tamparuli">Tamparuli</option>
+                            <option value="N.15 Kiulu">Kiulu</option>
+                            <option value="N.16 Karambunai">Karambunai</option>
+                            <option value="N.17 Darau">Darau</option>
+                            <option value="N.18 Inanam">Inanam</option>
+                            <option value="N.19 Likas">Likas</option>
+                            <option value="N.20 Api-Api">Api-Api</option>
+                            <option value="N.21 Luyang">Luyang</option>
+                            <option value="N.22 Tanjung Aru">Tanjung Aru</option>
+                            <option value="N.23 Petagas">Petagas</option>
+                            <option value="N.24 Tanjung Keramat">Tanjung Keramat</option>
+                            <option value="N.25 Kapayan">Kapayan</option>
+                            <option value="N.26 Moyog">Moyog</option>
+                            <option value="N.27 Limbahau">Limbahau</option>
+                            <option value="N.28 Kawang">Kawang</option>
+                            <option value="N.29 Pantai Manis">Pantai Manis</option>
+                            <option value="N.30 Bongawan">Bongawan</option>
+                            <option value="N.31 Membakut">Membakut</option>
+                            <option value="N.32 Klias">Klias</option>
+                            <option value="N.33 Kuala Penyu">Kuala Penyu</option>
+                            <option value="N.34 Lumadan">Lumadan</option>
+                            <option value="N.35 Sindumin">Sindumin</option>
+                            <option value="N.36 Kundasang">Kundasang</option>
+                            <option value="N.37 Karanaan">Karanaan</option>
+                            <option value="N.38 Paginatan">Paginatan</option>
+                            <option value="N.39 Tambunan">Tambunan</option>
+                            <option value="N.40 Bingkor">Bingkor</option>
+                            <option value="N.41 Liawan">Liawan</option>
+                            <option value="N.42 Melalap">Melalap</option>
+                            <option value="N.43 Kemabong">Kemabong</option>
+                            <option value="N.44 Tulid">Tulid</option>
+                            <option value="N.45 Sook">Sook</option>
+                            <option value="N.46 Nabawan">Nabawan</option>
+                            <option value="N.47 Telupid">Telupid</option>
+                            <option value="N.48 Sugut">Sugut</option>
+                            <option value="N.49 Labuk">Labuk</option>
+                            <option value="N.50 Gum-Gum">Gum-Gum</option>
+                            <option value="N.51 Sungai Manila">Sungai Manila</option>
+                            <option value="N.52 Sungai Sibuga">Sungai Sibuga</option>
+                            <option value="N.53 Sekong">Sekong</option>
+                            <option value="N.54 Karamunting">Karamunting</option>
+                            <option value="N.55 Elopura">Elopura</option>
+                            <option value="N.56 Tanjong Papat">Tanjong Papat</option>
+                            <option value="N.57 Kuamut">Kuamut</option>
+                            <option value="N.58 Lamag">Lamag</option>
+                            <option value="N.59 Sukau">Sukau</option>
+                            <option value="N.60 Tungku">Tungku</option>
+                            <option value="N.61 Segama">Segama</option>
+                            <option value="N.62 Silam">Silam</option>
+                            <option value="N.63 Kunak">Kunak</option>
+                            <option value="N.64 Sulabayan">Sulabayan</option>
+                            <option value="N.65 Senallang">Senallang</option>
+                            <option value="N.66 Bugaya">Bugaya</option>
+                            <option value="N.67 Balung">Balung</option>
+                            <option value="N.68 Apas">Apas</option>
+                            <option value="N.69 Sri Tanjong">Sri Tanjong</option>
+                            <option value="N.70 Kukusan">Kukusan</option>
+                            <option value="N.71 Tanjung Batu">Tanjung Batu</option>
+                            <option value="N.72 Merotai">Merotai</option>
+                            <option value="N.73 Sebatik">Sebatik</option>
+                            <option value="N.01 Opar">Opar</option>
+                            <option value="N.02 Tasik Biru">Tasik Biru</option>
+                            <option value="N.03 Tanjong Datu">Tanjong Datu</option>
+                            <option value="N.04 Pantai Damai">Pantai Damai</option>
+                            <option value="N.05 Demak Laut">Demak Laut</option>
+                            <option value="N.06 Tupong">Tupong</option>
+                            <option value="N.07 Samariang">Samariang</option>
+                            <option value="N.08 Satok">Satok</option>
+                            <option value="N.09 Padungan">Padungan</option>
+                            <option value="N.10 Pending">Pending</option>
+                            <option value="N.11 Batu Lintang">Batu Lintang</option>
+                            <option value="N.12 Kota Sentosa">Kota Sentosa</option>
+                            <option value="N.13 Batu Kitang">Batu Kitang</option>
+                            <option value="N.14 Batu Kawah">Batu Kawah</option>
+                            <option value="N.15 Asajaya">Asajaya</option>
+                            <option value="N.16 Muara Tuang">Muara Tuang</option>
+                            <option value="N.17 Stakan">Stakan</option>
+                            <option value="N.18 Serembu">Serembu</option>
+                            <option value="N.19 Mambong">Mambong</option>
+                            <option value="N.20 Tarat">Tarat</option>
+                            <option value="N.21 Tebedu">Tebedu</option>
+                            <option value="N.22 Kedup">Kedup</option>
+                            <option value="N.23 Bukit Semuja">Bukit Semuja</option>
+                            <option value="N.24 Sadong Jaya">Sadong Jaya</option>
+                            <option value="N.25 Simunjan">Simunjan</option>
+                            <option value="N.26 Gedong">Gedong</option>
+                            <option value="N.27 Sebuyau">Sebuyau</option>
+                            <option value="N.28 Lingga">Lingga</option>
+                            <option value="N.29 Beting Maro">Beting Maro</option>
+                            <option value="N.30 Balai Ringin">Balai Ringin</option>
+                            <option value="N.31 Bukit Begunan">Bukit Begunan</option>
+                            <option value="N.32 Simanggang">Simanggang</option>
+                            <option value="N.33 Engkilili">Engkilili</option>
+                            <option value="N.34 Batang Ai">Batang Ai</option>
+                            <option value="N.35 Saribas">Saribas</option>
+                            <option value="N.36 Layar">Layar</option>
+                            <option value="N.37 Bukit Saban">Bukit Saban</option>
+                            <option value="N.38 Kalaka">Kalaka</option>
+                            <option value="N.39 Krian">Krian</option>
+                            <option value="N.40 Kabong">Kabong</option>
+                            <option value="N.41 Kuala Rajang">Kuala Rajang</option>
+                            <option value="N.42 Semop">Semop</option>
+                            <option value="N.43 Daro">Daro</option>
+                            <option value="N.44 Jemoreng">Jemoreng</option>
+                            <option value="N.45 Repok">Repok</option>
+                            <option value="N.46 Meradong">Meradong</option>
+                            <option value="N.47 Pakan">Pakan</option>
+                            <option value="N.48 Meluan">Meluan</option>
+                            <option value="N.49 Ngemah">Ngemah</option>
+                            <option value="N.50 Machan">Machan</option>
+                            <option value="N.51 Bukit Assek">Bukit Assek</option>
+                            <option value="N.52 Dudong">Dudong</option>
+                            <option value="N.53 Bawang Assan">Bawang Assan</option>
+                            <option value="N.54 Pelawan">Pelawan</option>
+                            <option value="N.55 Nangka">Nangka</option>
+                            <option value="N.56 Dalat">Dalat</option>
+                            <option value="N.57 Tellian">Tellian</option>
+                            <option value="N.58 Balingian">Balingian</option>
+                            <option value="N.59 Tamin">Tamin</option>
+                            <option value="N.60 Kakus">Kakus</option>
+                            <option value="N.61 Pelagus">Pelagus</option>
+                            <option value="N.62 Katibas">Katibas</option>
+                            <option value="N.63 Bukit Goram">Bukit Goram</option>
+                            <option value="N.64 Baleh">Baleh</option>
+                            <option value="N.65 Belaga">Belaga</option>
+                            <option value="N.66 Murum">Murum</option>
+                            <option value="N.67 Jepak">Jepak</option>
+                            <option value="N.68 Tanjong Batu">Tanjong Batu</option>
+                            <option value="N.69 Kemena">Kemena</option>
+                            <option value="N.70 Samalaju">Samalaju</option>
+                            <option value="N.71 Bekenu">Bekenu</option>
+                            <option value="N.72 Lambir">Lambir</option>
+                            <option value="N.73 Piasau">Piasau</option>
+                            <option value="N.74 Pujut">Pujut</option>
+                            <option value="N.75 Senadin">Senadin</option>
+                            <option value="N.76 Marudi">Marudi</option>
+                            <option value="N.77 Telang Usan">Telang Usan</option>
+                            <option value="N.78 Mulu">Mulu</option>
+                            <option value="N.79 Bukit Kota">Bukit Kota</option>
+                            <option value="N.80 Batu Danau">Batu Danau</option>
+                            <option value="N.81 Ba'Kelalan">Ba'Kelalan</option>
+                            <option value="N.82 Bukit Sari">Bukit Sari</option>
+                        </select>
                     </div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam augue tellus, condimentum ac
-                        libero nec, pretium accumsan sem. Cras pretium elit nec mollis auctor. Sed urna justo, tempor
-                        sit amet nisi a, pharetra tincidunt arcu. Praesent pulvinar, ante id gravida facilisis, ligula
-                        lorem auctor libero, sit amet iaculis ipsum nibh a nibh. Donec sit amet velit congue, tempor
-                        lorem a, pulvinar nunc. Phasellus eleifend porttitor libero, quis finibus sem consequat ut. Duis
-                        quis accumsan neque. Nam non magna mi. Vivamus ullamcorper feugiat ipsum, eget tempus quam.
-                        Pellentesque dapibus turpis mi, vel lacinia ipsum hendrerit et. Donec interdum ligula non lorem
-                        tincidunt, at blandit mi gravida. Donec ut risus ipsum. Donec id risus quis nulla bibendum
-                        pulvinar.
-                    </p>
                 </div>
+                <div class="h-full flex flex-col gap-8">
+                    <div class="h-full flex flex-row gap-8">
+                        <div class="h-full w-full flex-grow" id="chart1"></div>
+                        <div class="h-full w-full flex-grow" id="chart2"></div>
+                        <div class="h-full w-full flex-grow" id="chart3"></div>
+                    </div>
+                    <div>
+                        <p class="text-center chart-title font-bold">Age Group</p>
+                        <div class="h-full" id="age"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex shadow-lg p-8 flex-row align-center justify-center border border-solid border-black/24">
+                <p class="body">
+                    <strong>Tay Tshung Wen</strong> | FIT3179 - Data Visualization 2 | 10-10-2024 |
+                    <a
+                        class="text-[#010066]"
+                        href="https://www.kaggle.com/datasets/jjean95/malaysia-general-election-datasets"
+                    >
+                        Click here to view the data source
+                    </a>
+                </p>
             </div>
         </div>
     </body>

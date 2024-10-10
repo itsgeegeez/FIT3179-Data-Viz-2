@@ -14,36 +14,37 @@
     ],
     "transform": [
         { "filter": "datum.dun == dun_selection" },
-        { "fold": ["sex_female", "sex_male"], "as": ["gender", "value"] },
+        {
+            "fold": [
+                "ethnicity_proportion_bumi",
+                "ethnicity_proportion_chinese",
+                "ethnicity_proportion_indian",
+                "ethnicity_proportion_other"
+            ],
+            "as": ["ethnicity", "value"]
+        },
         {
             "window": [{ "op": "rank", "as": "rank" }],
             "sort": [{ "field": "value", "order": "ascending" }]
         },
         {
-            "calculate": "indexof(datum.gender, 'sex_female') > -1 ? 'Female' : 'Male'",
-            "as": "gender"
+            "calculate": "datum.ethnicity == 'ethnicity_proportion_bumi' ? 'Bumi' : datum.ethnicity == 'ethnicity_proportion_chinese' ? 'Chinese' : datum.ethnicity == 'ethnicity_proportion_indian' ? 'Indian' : 'Other'",
+            "as": "ethnicity"
         },
         {
-            "window": [{ "op": "sum", "field": "value", "as": "total" }],
-            "frame": [null, null]
-        },
-        {
-            "calculate": "datum.value / datum.total * 100",
-            "as": "percentage"
-        },
-        {
-            "calculate": "format(datum.percentage, '.1f') + '%'",
+            "calculate": "datum.value + '%'",
             "as": "percentageWithSuffix"
         }
     ],
     "title": {
-        "text": "Sex",
+        "text": "Ethnicity",
         "fontSize": 16
     },
     "encoding": {
         "theta": {
             "field": "value",
             "type": "quantitative",
+            "title": "Population",
             "stack": true,
             "sort": {
                 "field": "rank"
@@ -51,24 +52,23 @@
         },
         "order": { "field": "rank", "type": "quantitative" },
         "color": {
-            "field": "gender",
-            "title": "Sex",
+            "field": "ethnicity",
+            "title": "Ethnicity",
             "type": "nominal",
             "legend": {
                 "orient": "bottom"
             },
             "scale": {
-                "range": ["#cc0001", "#ffcc00"]
+                "range": ["#cc0001", "#ffcc00", "#010066", "#7ed6ea"]
             }
         },
         "tooltip": [
             { "field": "dun", "type": "nominal", "title": "Constituency" },
-            { "field": "gender", "type": "nominal", "title": "Gender" },
+            { "field": "ethnicity", "type": "nominal", "title": "Ethnicity" },
             {
-                "field": "value",
-                "type": "quantitative",
-                "title": "Population",
-                "format": ",.0f"
+                "field": "percentageWithSuffix",
+                "type": "nominal",
+                "title": "Population (%)"
             }
         ]
     },
@@ -79,21 +79,6 @@
                 "radius": 96,
                 "innerRadius": 48,
                 "cornerRadius": 8
-            }
-        },
-        {
-            "mark": {
-                "type": "text",
-                "radius": 72,
-                "fontSize": 14
-            },
-            "encoding": {
-                "text": {
-                    "field": "percentageWithSuffix"
-                },
-                "color": {
-                    "value": "#ffffff"
-                }
             }
         }
     ],

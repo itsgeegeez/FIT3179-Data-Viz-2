@@ -14,14 +14,17 @@
     ],
     "transform": [
         { "filter": "datum.dun == dun_selection" },
-        { "fold": ["sex_female", "sex_male"], "as": ["gender", "value"] },
+        {
+            "fold": ["nationality_citizen", "nationality_non_citizen"],
+            "as": ["citizen", "value"]
+        },
         {
             "window": [{ "op": "rank", "as": "rank" }],
             "sort": [{ "field": "value", "order": "ascending" }]
         },
         {
-            "calculate": "indexof(datum.gender, 'sex_female') > -1 ? 'Female' : 'Male'",
-            "as": "gender"
+            "calculate": "datum.citizen == 'nationality_citizen' ? 'Citizen' : 'Non-citizen'",
+            "as": "citizen"
         },
         {
             "window": [{ "op": "sum", "field": "value", "as": "total" }],
@@ -37,13 +40,14 @@
         }
     ],
     "title": {
-        "text": "Sex",
+        "text": "Nationality",
         "fontSize": 16
     },
     "encoding": {
         "theta": {
             "field": "value",
             "type": "quantitative",
+            "title": "Population",
             "stack": true,
             "sort": {
                 "field": "rank"
@@ -51,19 +55,19 @@
         },
         "order": { "field": "rank", "type": "quantitative" },
         "color": {
-            "field": "gender",
-            "title": "Sex",
+            "field": "citizen",
+            "title": "Citizen Status",
             "type": "nominal",
             "legend": {
                 "orient": "bottom"
             },
             "scale": {
-                "range": ["#cc0001", "#ffcc00"]
+                "range": ["#cc0001", "#ffcc00", "#010066", "#fff"]
             }
         },
         "tooltip": [
             { "field": "dun", "type": "nominal", "title": "Constituency" },
-            { "field": "gender", "type": "nominal", "title": "Gender" },
+            { "field": "citizen", "type": "nominal", "title": "Citizen Status" },
             {
                 "field": "value",
                 "type": "quantitative",
