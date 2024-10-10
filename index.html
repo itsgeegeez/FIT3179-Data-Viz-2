@@ -15,7 +15,7 @@
 
         <title>Tay Tshung Wen FIT3179 Data Viz 2 - Malaysia General Election 2022</title>
     </head>
-    <body>
+    <body class="body-bg">
         <script type="text/javascript">
             var vg_1 = './map.vg.json';
             vegaEmbed('#map', vg_1, { actions: false })
@@ -65,12 +65,10 @@
             });
         </script>
         <div class="mx-auto my-8 p-8 w-[1280px] flex flex-col gap-8">
-            <div class="flex bg-[#010066] shadow-lg text-white p-8 flex-col align-center justify-center">
-                <p class="title font-black text-center">
-                    Malaysia General Election <span class="text-[#ffcc00]">2022</span>
-                </p>
+            <div class="flex bg-[#010066] rounded-lg shadow-lg text-white p-8 flex-col align-center justify-center">
+                <p class="title text-center">Malaysia General Election <span class="text-[#ffcc00]">2022</span></p>
             </div>
-            <div class="shadow-lg border border-solid border-black/24 p-8">
+            <div class="shadow-lg section">
                 <p class="body">
                     The 2022 Malaysian General Election map showcases a
                     <strong>diverse political landscape</strong> across the country. Peninsular Malaysia displays a
@@ -80,9 +78,9 @@
                 </p>
                 <div class="flex w-full gap-4 h-[512px]" id="map"></div>
             </div>
-            <div class="h-[512px] gap-4 flex flex-col shadow-lg border border-solid border-black/24 p-8">
+            <div class="h-[640px] gap-4 flex flex-col shadow-lg section">
                 <div class="flex flex-col gap-2 justify-center">
-                    <p class="font-black section-title">
+                    <p class="section-title">
                         <span class="highlight">Top 10</span> states with highest average majority votes
                     </p>
                     <p class="text-justify body">
@@ -96,9 +94,9 @@
                 </div>
                 <div class="h-full flex-grow" id="majority_by_state"></div>
             </div>
-            <div class="gap-4 flex flex-col shadow-lg border border-solid border-black/24 p-8">
-                <div class="flex-grow flex flex-col gap-2">
-                    <div class="font-black section-title">
+            <div class="gap-4 flex flex-col shadow-lg section">
+                <div class="flex-grow flex flex-col gap-0">
+                    <div class="section-title">
                         <p class="inline-block w-fit">Demographic summary of state legislative</p>
                         <select id="constituency-select" class="inline-block h-min w-fit highlight">
                             <option value="N.01 Titi Tinggi">Titi Tinggi</option>
@@ -716,6 +714,7 @@
                             <option value="N.82 Bukit Sari">Bukit Sari</option>
                         </select>
                     </div>
+                    <p class="body">Choose a state legislative</p>
                 </div>
                 <div class="h-full flex flex-col gap-8">
                     <div class="h-full flex flex-row gap-8">
@@ -729,7 +728,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex shadow-lg p-8 flex-row align-center justify-center border border-solid border-black/24">
+            <div class="flex flex-row align-center justify-center shadow-lg section">
                 <p class="body">
                     <strong>Tay Tshung Wen</strong> | FIT3179 - Data Visualization 2 | 10-10-2024 |
                     <a

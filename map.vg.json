@@ -3,7 +3,6 @@
     "width": "container",
     "background": "transparent",
     "height": "container",
-    "autosize": "fit",
     "view": {
         "stroke": "transparent"
     },

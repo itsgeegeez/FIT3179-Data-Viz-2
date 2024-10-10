@@ -23,13 +23,14 @@ select {
 .section-title {
     font-family: serif;
     font-size: 16pt;
+    font-weight: 900;
 }
 
 .title {
     font-size: 24pt;
     font-family: serif;
+    font-weight: 900;
 }
-
 
 .body {
     font-family: serif;
@@ -38,4 +39,17 @@ select {
 
 .chart-title {
     font-size: 12pt;
+}
+
+.body-bg {
+    background: radial-gradient(at bottom left, var(--red), transparent),
+        radial-gradient(at top left, var(--blue), transparent),
+        radial-gradient(at top right, var(--orange), transparent), radial-gradient(var(--white), transparent);
+}
+
+.section {
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
 }

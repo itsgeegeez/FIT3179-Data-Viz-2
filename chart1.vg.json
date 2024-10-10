@@ -58,7 +58,7 @@
                 "orient": "bottom"
             },
             "scale": {
-                "range": ["#cc0001", "#ffcc00"]
+                "range": ["#cc0001", "#010066"]
             }
         },
         "tooltip": [
@@ -93,7 +93,8 @@
                 },
                 "color": {
                     "value": "#ffffff"
-                }
+                },
+                "tooltip": null
             }
         }
     ],
